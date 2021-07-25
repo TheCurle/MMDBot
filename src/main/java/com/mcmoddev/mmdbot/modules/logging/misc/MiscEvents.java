@@ -28,7 +28,7 @@ public final class MiscEvents extends ListenerAdapter {
     public void onReady(final @NotNull ReadyEvent event) {
         MMDBot.LOGGER.warn("Bot is online and ready.");
         TaskScheduler.init();
-        References.STARTUP_TIME = Instant.now();
+        References.setStartupTime(Instant.now());
     }
 
     /**

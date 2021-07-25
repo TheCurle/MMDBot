@@ -55,8 +55,11 @@ public final class CmdOldChannels extends Command {
             return;
         }
 
+        // Two months
+        final int thresholdFallback = 60;
+
         final int dayThreshold = args.size() > 0 && args.get(0).matches("-?\\d+")
-            ? Integer.parseInt(args.remove(0)) : 60;
+            ? Integer.parseInt(args.remove(0)) : thresholdFallback;
 
         List<String> toCheck = args.stream().map(it -> it.toLowerCase(Locale.ROOT)).collect(Collectors.toList());
 
@@ -109,12 +112,12 @@ public final class CmdOldChannels extends Command {
         /**
          * Instantiates a new Channel data.
          *
-         * @param channel the channel
-         * @param days    the days
+         * @param pChannel the channel
+         * @param pDays    the days
          */
-        private ChannelData(final TextChannel channel, final long days) {
-            this.channel = channel;
-            this.days = days;
+        private ChannelData(final TextChannel pChannel, final long pDays) {
+            this.channel = pChannel;
+            this.days = pDays;
         }
     }
 }

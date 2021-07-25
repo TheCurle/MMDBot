@@ -22,12 +22,12 @@ public final class CmdRunTrick extends Command {
     /**
      * Instantiates a new Cmd run trick.
      *
-     * @param trick the trick
+     * @param pTrick the trick
      */
-    public CmdRunTrick(final Trick trick) {
+    public CmdRunTrick(final Trick pTrick) {
         super();
-        this.trick = trick;
-        List<String> trickNames = trick.getNames();
+        this.trick = pTrick;
+        List<String> trickNames = pTrick.getNames();
         name = trickNames.get(0);
         aliases = trickNames.size() > 1 ? trickNames.subList(1, trickNames.size())
             .toArray(new String[0]) : new String[0];

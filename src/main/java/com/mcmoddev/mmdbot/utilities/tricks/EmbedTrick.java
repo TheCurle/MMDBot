@@ -44,19 +44,19 @@ public class EmbedTrick implements Trick {
     /**
      * Instantiates a new Embed trick.
      *
-     * @param names       Name of the trick.
-     * @param title       Trick title.
-     * @param description The description of the trick.
-     * @param color       The embed edge color for the trick.
-     * @param fields      the fields
+     * @param pNames       Name of the trick.
+     * @param pTitle       Trick title.
+     * @param pDescription The description of the trick.
+     * @param pColor       The embed edge color for the trick.
+     * @param pFields      the fields
      */
-    public EmbedTrick(final List<String> names, final String title, final String description, final int color,
-                      final MessageEmbed.Field... fields) {
-        this.names = names;
-        this.title = title;
-        this.description = description;
-        this.color = color;
-        this.fields = Arrays.asList(fields);
+    public EmbedTrick(final List<String> pNames, final String pTitle, final String pDescription, final int pColor,
+                      final MessageEmbed.Field... pFields) {
+        this.names = pNames;
+        this.title = pTitle;
+        this.description = pDescription;
+        this.color = pColor;
+        this.fields = Arrays.asList(pFields);
     }
 
     /**
@@ -157,11 +157,15 @@ public class EmbedTrick implements Trick {
         @Override
         public EmbedTrick createFromArgs(final String args) {
             String[] argsArray = args.split(" \\| ");
+
+            final int colorField = 3;
+            final int base16 = 16;
+
             return new EmbedTrick(
                 Arrays.asList(argsArray[0].split(" ")),
                 argsArray[1],
                 argsArray[2],
-                Integer.parseInt(argsArray[3].replace("#", ""), 16)
+                Integer.parseInt(argsArray[colorField].replace("#", ""), base16)
             );
         }
     }

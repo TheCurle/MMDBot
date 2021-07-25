@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * The type Minecraft version helper.
  *
- * @author
+ * @author unknown
  */
 public final class MinecraftVersionHelper {
 
@@ -77,12 +77,16 @@ public final class MinecraftVersionHelper {
         if (reader == null) {
             return;
         }
-        final TypeToken<List<MinecraftVersionInfo>> token = new TypeToken<List<MinecraftVersionInfo>>() {
+        final TypeToken<List<MinecraftVersionInfo>> token = new TypeToken<>() {
         };
         final List<MinecraftVersionInfo> versions = new Gson().fromJson(reader, token.getType());
 
-        latest = versions.get(0).version;
-        latestStable = versions.stream().filter(it -> it.stable).findFirst().map(it -> it.version).orElse(latest);
+        latest = versions.get(0).getVersion();
+        latestStable = versions.stream()
+            .filter(MinecraftVersionInfo::isStable)
+            .findFirst()
+            .map(MinecraftVersionInfo::getVersion)
+            .orElse(latest);
         //lastUpdated = Instant.now();
     }
 
@@ -104,18 +108,42 @@ public final class MinecraftVersionHelper {
     /**
      * The type Minecraft version info.
      *
-     * @author
+     * @author unknown
      */
     private static class MinecraftVersionInfo {
 
         /**
-         * The Version.
+         * The version.
          */
-         public String version;
+        private String version;
+
+        /**
+         * The stable.
+         */
+        private boolean stable;
+
+        /**
+         * The Version.
+         * @return the version String
+         */
+        public String getVersion() {
+            return version;
+        }
+
+        public void setVersion(final String pVersion) {
+            this.version = pVersion;
+        }
 
         /**
          * The Stable.
+         * @return the stable flag
          */
-        public boolean stable;
+        public boolean isStable() {
+            return stable;
+        }
+
+        public void setStable(final boolean pStable) {
+            this.stable = pStable;
+        }
     }
 }

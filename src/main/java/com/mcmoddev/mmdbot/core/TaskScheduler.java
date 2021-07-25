@@ -31,7 +31,8 @@ public final class TaskScheduler {
      * Init.
      */
     public static void init() {
-        //Check each every 3 hours. 1000 * 60 * 60 * 3
+        //Check each every 24 hours. 1000 * 60 * 60 * 24
+        final long twentyFourHours = 1000 * 60 * 60 * 24;
         //Check every 15 min. 15 * 60 * 1000
         final long fifteenMinutes = 15 * 60 * 1000L;
         try {
@@ -42,6 +43,6 @@ public final class TaskScheduler {
         }
         TIMER.scheduleAtFixedRate(new MinecraftUpdateNotifier(), 0, fifteenMinutes);
         TIMER.scheduleAtFixedRate(new FabricApiUpdateNotifier(), 0, fifteenMinutes);
-        TIMER.scheduleAtFixedRate(new ChannelMessageChecker(), 0, 1000 * 60 * 60 * 24);
+        TIMER.scheduleAtFixedRate(new ChannelMessageChecker(), 0, twentyFourHours);
     }
 }

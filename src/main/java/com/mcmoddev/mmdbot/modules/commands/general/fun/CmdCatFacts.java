@@ -17,7 +17,7 @@ import java.util.Random;
 /**
  * The type Cmd cat facts.
  *
- * @author
+ * @author unknown
  */
 public final class CmdCatFacts extends Command {
 
@@ -46,7 +46,8 @@ public final class CmdCatFacts extends Command {
         try {
             final var url = new URL("https://catfact.ninja/fact");
             final URLConnection connection = url.openConnection();
-            connection.setConnectTimeout(10 * 1000);
+            final int tenSeconds = 10 * 1000;
+            connection.setConnectTimeout(tenSeconds);
             final var reader = new BufferedReader(
                 new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
             final String inputLine = reader.readLine();
@@ -76,7 +77,8 @@ public final class CmdCatFacts extends Command {
         final var embed = new EmbedBuilder();
         final var fact = getFact();
         if (!"".equals(fact)) {
-            embed.setColor(RANDOM.nextInt(0x1000000));
+            final int hexColorMax = 0x1000000;
+            embed.setColor(RANDOM.nextInt(hexColorMax));
             embed.appendDescription(fact);
             embed.setFooter("Puwerrd by https://catfact.ninja");
 

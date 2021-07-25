@@ -24,7 +24,7 @@ import static com.mcmoddev.mmdbot.utilities.console.MMDMarkers.REQUESTS;
 /**
  * The type Event reaction added.
  *
- * @author
+ * @author unknown
  */
 public final class EventReactionAdded extends ListenerAdapter {
 
@@ -75,7 +75,11 @@ public final class EventReactionAdded extends ListenerAdapter {
             final var badReactions = Utils.getMatchingReactions(message, badReactionsList::contains);
 
             final var users = badReactions.get(0).retrieveUsers();
-            final var hasStaffSignoff = users.stream().anyMatch(user -> guild.getMember(user).hasPermission(Permission.KICK_MEMBERS));
+            final var hasStaffSignoff = users.stream()
+                .anyMatch(user -> guild
+                    .getMember(user)
+                    .hasPermission(Permission.KICK_MEMBERS)
+                );
 
             final int badReactionsCount = badReactions.stream().mapToInt(MessageReaction::getCount).sum();
             final int goodReactionsCount = Utils.getNumberOfMatchingReactions(message, goodReactionsList::contains);

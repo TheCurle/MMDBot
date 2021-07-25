@@ -34,7 +34,9 @@ public final class SemVer implements Comparable<SemVer> {
         this.major = Integer.parseInt(vs[0]);
         this.minor = Integer.parseInt(vs[1]);
 
-        if (vs.length == 3) {
+        final int expectedSegments = 3;
+
+        if (vs.length == expectedSegments) {
             this.patch = Integer.parseInt(vs[2]);
         }
     }
@@ -81,7 +83,6 @@ public final class SemVer implements Comparable<SemVer> {
             return -1;
         }
 
-
         if (this.minor > other.minor) {
             return 1;
         }
@@ -96,14 +97,8 @@ public final class SemVer implements Comparable<SemVer> {
             return 1;
         }
 
-        if (this.patch > other.patch) {
-            return 1;
-        }
-        if (this.patch < other.patch) {
-            return -1;
-        }
-
-        return 0;
+        assert this.patch != null;
+        return this.patch.compareTo(other.patch);
     }
 
     /**

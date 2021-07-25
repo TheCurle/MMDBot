@@ -17,12 +17,13 @@ public class CmdRename extends Command {
      */
     public CmdRename() {
         super();
+        final int cooldownTimer = 2100;
         name = "rename";
         help = "Set the name of the bot. Name can only be used twice an hour, has a 35 min cooldown each time used.";
         ownerCommand = true;
         hidden = true;
         guildOnly = false;
-        cooldown = 2100;
+        cooldown = cooldownTimer;
     }
 
     /**

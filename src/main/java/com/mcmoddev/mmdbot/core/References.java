@@ -12,7 +12,9 @@ import java.time.format.DateTimeFormatter;
  *
  * @author ProxyNeko
  */
-public class References {
+public final class References {
+
+    private References() { }
 
     /**
      * The name of the bot in code.
@@ -63,5 +65,23 @@ public class References {
      */
     public static final String USER_JOIN_TIMES_FILE_PATH = "mmdbot_user_join_times.json";
 
-    public static Instant STARTUP_TIME;
+    /**
+     * The timestamp of the time that the bot came online.
+     */
+    private static Instant startupTime;
+
+    /**
+     * @return The timestamp of the time that the bot came online.
+     */
+    public static Instant getStartupTime() {
+        return startupTime;
+    }
+
+    /**
+     * Set the startupTime reference..
+     * @param pStartupTime The new Instant to take over.
+     */
+    public static void setStartupTime(final Instant pStartupTime) {
+        References.startupTime = pStartupTime;
+    }
 }

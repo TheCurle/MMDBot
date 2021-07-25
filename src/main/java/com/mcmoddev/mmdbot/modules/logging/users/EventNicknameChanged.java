@@ -16,7 +16,7 @@ import static com.mcmoddev.mmdbot.MMDBot.getConfig;
 /**
  * The type Event nickname changed.
  *
- * @author
+ * @author unknown
  */
 public final class EventNicknameChanged extends ListenerAdapter {
 
@@ -51,8 +51,9 @@ public final class EventNicknameChanged extends ListenerAdapter {
                         true);
                     embed.setTimestamp(Instant.now());
                     if (entry.getTargetIdLong() != target.getIdLong()) {
-                        LOGGER.warn(MMDMarkers.EVENTS, "Inconsistency between target of retrieved audit log entry and actual "
-                            + "nickname event target: retrieved is {}, but target is {}", target, entry.getUser());
+                        LOGGER.warn(MMDMarkers.EVENTS, "Inconsistency between target of retrieved audit log entry and "
+                            + "actual nickname event target: retrieved is {}, but target is {}",
+                            target, entry.getUser());
                     } else if (entry.getUser() != null) {
                         final var editor = entry.getUser();
                         embed.addField("Nickname Editor:", editor.getAsMention() + " ("
@@ -64,8 +65,8 @@ public final class EventNicknameChanged extends ListenerAdapter {
                     embed.addField("Old Nickname:", oldNick, true);
                     embed.addField("New Nickname:", newNick, true);
 
-                    LOGGER.info(MMDMarkers.EVENTS, "User {} changed nickname from `{}` to `{}`, by {}", target, oldNick, newNick,
-                        entry.getUser());
+                    LOGGER.info(MMDMarkers.EVENTS, "User {} changed nickname from `{}` to `{}`, by {}", target,
+                        oldNick, newNick, entry.getUser());
 
                     return channel.sendMessageEmbeds(embed.build());
                 })

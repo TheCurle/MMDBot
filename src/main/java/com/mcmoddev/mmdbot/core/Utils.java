@@ -43,7 +43,7 @@ import static com.mcmoddev.mmdbot.MMDBot.getConfig;
 /**
  * The type Utils.
  *
- * @author
+ * @author unknown
  */
 public final class Utils {
 
@@ -150,7 +150,7 @@ public final class Utils {
     }
 
     /**
-     * Gets reactions matching a predicate
+     * Gets reactions matching a predicate.
      *
      * @param message   The message we are getting the matching reactions from.
      * @param predicate The predicate
@@ -369,7 +369,8 @@ public final class Utils {
                     .map(id -> "<#" + id + ">")
                     .collect(Collectors.joining(", "));
 
-                final StringBuilder str = new StringBuilder(84)
+                final int strCapacity = 84;
+                final StringBuilder str = new StringBuilder(strCapacity)
                     .append("This command cannot be run in this channel");
                 if (!allowedChannelStr.isEmpty()) {
                     str.append(", only in ")

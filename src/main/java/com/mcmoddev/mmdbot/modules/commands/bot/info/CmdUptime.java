@@ -41,7 +41,7 @@ public class CmdUptime extends Command {
         embed.setColor(Color.GREEN);
         //TODO Fix utils that handle time to show hours and minuets too.
         embed.addField("I've been online for: ", Utils.getTimeDifference(Utils.getLocalTime(
-            References.STARTUP_TIME), LocalDateTime.now()), false);
+            References.getStartupTime()), LocalDateTime.now()), false);
         embed.setTimestamp(Instant.now());
         channel.sendMessageEmbeds(embed.build()).queue();
     }

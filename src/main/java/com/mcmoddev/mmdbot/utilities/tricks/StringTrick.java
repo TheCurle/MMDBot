@@ -27,12 +27,12 @@ public class StringTrick implements Trick {
     /**
      * Instantiates a new String trick.
      *
-     * @param names the names
-     * @param body  the body
+     * @param pNames the names
+     * @param pBody  the body
      */
-    public StringTrick(final List<String> names, final String body) {
-        this.names = names;
-        this.body = body;
+    public StringTrick(final List<String> pNames, final String pBody) {
+        this.names = pNames;
+        this.body = pBody;
     }
 
     /**

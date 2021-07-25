@@ -21,7 +21,7 @@ import static com.mcmoddev.mmdbot.MMDBot.getConfig;
 /**
  * The type Event role removed.
  *
- * @author
+ * @author unknown
  */
 public final class EventRoleRemoved extends ListenerAdapter {
 
@@ -59,8 +59,8 @@ public final class EventRoleRemoved extends ListenerAdapter {
                     embed.addField("User:", target.getAsMention() + " (" + target.getId() + ")",
                         true);
                     if (entry.getTargetIdLong() != target.getIdLong()) {
-                        LOGGER.warn(MMDMarkers.EVENTS, "Inconsistency between target of retrieved audit log entry and actual "
-                            + "role event target: retrieved is {}, but target is {}", target, entry.getUser());
+                        LOGGER.warn(MMDMarkers.EVENTS, "Inconsistency between target of retrieved audit log entry and"
+                            + " actual role event target: retrieved is {}, but target is {}", target, entry.getUser());
                     } else if (entry.getUser() != null) {
                         final var editor = entry.getUser();
                         embed.addField("Editor:", editor.getAsMention() + " (" + editor.getId() + ")",

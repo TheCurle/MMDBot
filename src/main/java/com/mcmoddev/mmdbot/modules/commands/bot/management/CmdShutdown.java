@@ -37,11 +37,12 @@ public class CmdShutdown extends Command {
         //Shut down the JDA instance gracefully.
         event.getJDA().shutdown();
         MMDBot.LOGGER.warn("Shutting down the bot by request of " + event.getAuthor().getName() + " via Discord!");
+        final int oneSecond = 1000;
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
                 System.exit(0);
             }
-        }, 1000);
+        }, oneSecond);
     }
 }

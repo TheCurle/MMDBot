@@ -14,7 +14,9 @@ import com.mcmoddev.mmdbot.modules.logging.users.EventUserLeft;
  *
  * @author ProxyNeko
  */
-public class LoggingModule {
+public final class LoggingModule {
+
+    private LoggingModule() { }
 
     /**
      * Setup and load the bots logging module.

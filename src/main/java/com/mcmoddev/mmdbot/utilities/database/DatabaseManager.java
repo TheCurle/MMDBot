@@ -9,7 +9,9 @@ import java.sql.SQLException;
  *
  * @author Antoine Gagnon
  */
-public class DatabaseManager {
+public final class DatabaseManager {
+
+    private DatabaseManager() { }
 
     /**
      * Gets connection.

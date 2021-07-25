@@ -13,7 +13,7 @@ import java.time.Instant;
 /**
  * The type Cmd forge version.
  *
- * @author
+ * @author unknown
  */
 public final class CmdForgeVersion extends Command {
 
@@ -55,7 +55,8 @@ public final class CmdForgeVersion extends Command {
             recommendedForge = "none";
         }
         final String changelogLink = Utils.makeHyperlink("Changelog",
-            String.format("https://files.minecraftforge.net/maven/net/minecraftforge/forge/%1$s-%2$s/forge-%1$s-%2$s-changelog.txt",
+            String.format("https://files.minecraftforge.net/maven/net/minecraftforge/forge/"
+                    + "%1$s-%2$s/forge-%1$s-%2$s-changelog.txt",
                 latest.getMcVersion(), latest.getForgeVersion().getLatest()));
         final var embed = new EmbedBuilder();
 

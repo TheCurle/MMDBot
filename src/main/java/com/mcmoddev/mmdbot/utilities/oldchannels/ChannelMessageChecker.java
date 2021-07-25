@@ -45,10 +45,12 @@ public class ChannelMessageChecker extends TimerTask {
 
         final var currentTime = Instant.now();
 
+        final int oneHundred = 100;
+
         CompletableFuture.allOf(guild.getTextChannels()
             .parallelStream()
             .map(channel -> channel.getIterableHistory()
-                .takeAsync(100).thenAcceptAsync(
+                .takeAsync(oneHundred).thenAcceptAsync(
                     messages -> messages.stream().filter(message -> !message.isWebhookMessage()).findFirst()
                         .ifPresent(message -> {
                         final long daysSinceLastMessage = ChronoUnit.DAYS.between(message.getTimeCreated()

@@ -37,6 +37,8 @@ import java.util.stream.Collectors;
  */
 public final class Tricks {
 
+    private Tricks() { }
+
     /**
      * The storage location for the tricks file.
      */
@@ -156,9 +158,9 @@ public final class Tricks {
      */
     private static void write() {
         final var tricksFile = new File(TRICK_STORAGE_PATH);
-        List<Trick> tricks = getTricks();
+        List<Trick> trickList = getTricks();
         try (var writer = new OutputStreamWriter(new FileOutputStream(tricksFile), StandardCharsets.UTF_8)) {
-            GSON.toJson(tricks, writer);
+            GSON.toJson(trickList, writer);
         } catch (final FileNotFoundException exception) {
             MMDBot.LOGGER.error("An FileNotFoundException occurred saving tricks...", exception);
         } catch (final IOException exception) {
@@ -193,7 +195,7 @@ public final class Tricks {
                 return null;
             }
             final TypeAdapter<T> delegate = gson.getDelegateAdapter(this, type);
-            return new TypeAdapter<T>() {
+            return new TypeAdapter<>() {
                 @Override
                 public void write(final JsonWriter out, final T value) throws IOException {
                     out.beginObject();

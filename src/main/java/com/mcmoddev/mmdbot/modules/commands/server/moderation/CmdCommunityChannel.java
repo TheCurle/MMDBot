@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 /**
  * The type Cmd community channel.
  *
- * @author
+ * @author unknown
  */
 public final class CmdCommunityChannel extends Command {
 
@@ -96,8 +96,10 @@ public final class CmdCommunityChannel extends Command {
         emote.addAll(guild.getEmotesByName("mmd3", true));
         emote.addAll(guild.getEmotesByName("mmd4", true));
 
+        final int mmdLogoParts = 4;
+
         // Flavor text: if the emotes are available, use them, else just use plain MMD
-        final String emoteText = emote.size() == 4 ? emote.stream().map(Emote::getAsMention)
+        final String emoteText = emote.size() == mmdLogoParts ? emote.stream().map(Emote::getAsMention)
             .collect(Collectors.joining()) : "";
         final String flavorText = emoteText.isEmpty() ? "MMD" : emoteText;
 

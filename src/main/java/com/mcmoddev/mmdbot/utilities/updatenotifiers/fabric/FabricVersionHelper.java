@@ -152,8 +152,8 @@ public final class FabricVersionHelper {
         LATEST_YARNS.clear();
         final Map<String, List<YarnVersionInfo>> map = versions.stream()
             .distinct()
-            .collect(Collectors.groupingBy(it -> it.gameVersion));
-        map.keySet().forEach(it -> LATEST_YARNS.put(it, map.get(it).get(0).version));
+            .collect(Collectors.groupingBy(YarnVersionInfo::getGameVersion));
+        map.keySet().forEach(it -> LATEST_YARNS.put(it, map.get(it).get(0).getVersion()));
     }
 
     /**
@@ -168,7 +168,7 @@ public final class FabricVersionHelper {
         };
         final List<LoaderVersionInfo> versions = new Gson().fromJson(reader, token.getType());
 
-        latestLoader = versions.get(0).version;
+        latestLoader = versions.get(0).getVersion();
     }
 
     /**
@@ -239,19 +239,55 @@ public final class FabricVersionHelper {
     private static class YarnVersionInfo {
 
         /**
-         * The Game version.
+         * The version of Minecraft these mappings are for.
          */
-        public String gameVersion;
+        private String gameVersion;
+
+        /**
+         * The build number of these mappings.
+         */
+        private int build;
+
+        /**
+         * The version of these mappings.
+         */
+        private String version;
+
+        /**
+         * The Game version.
+         * @return the game version these mappings are for, as a String
+         */
+        public String getGameVersion() {
+            return gameVersion;
+        }
+
+        public void setGameVersion(final String pGameVersion) {
+            this.gameVersion = pGameVersion;
+        }
 
         /**
          * The Build.
+         * @return the Build number
          */
-        public int build;
+        public int getBuild() {
+            return build;
+        }
+
+        public void setBuild(final int pBuild) {
+            this.build = pBuild;
+        }
 
         /**
          * The Version.
+         * @return the Version of the mappings
          */
-        public String version;
+        public String getVersion() {
+            return version;
+        }
+
+        public void setVersion(final String pVersion) {
+            this.version = pVersion;
+        }
     }
 
     /**
@@ -262,13 +298,37 @@ public final class FabricVersionHelper {
     private static class LoaderVersionInfo {
 
         /**
-         * The Build.
+         * The build number of the loader.
          */
-        public int build;
+        private int build;
+
+        /**
+         * The version of the loader.
+         */
+        private String version;
+
+        /**
+         * The Build.
+         * @return the Build number
+         */
+        public int getBuild() {
+            return build;
+        }
+
+        public void setBuild(final int pBuild) {
+            this.build = pBuild;
+        }
 
         /**
          * The Version.
+         * @return the Version as a String
          */
-        public String version;
+        public String getVersion() {
+            return version;
+        }
+
+        public void setVersion(final String pVersion) {
+            this.version = pVersion;
+        }
     }
 }

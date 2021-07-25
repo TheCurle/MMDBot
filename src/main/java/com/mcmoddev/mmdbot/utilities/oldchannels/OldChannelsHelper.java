@@ -10,7 +10,9 @@ import java.util.Map;
  *
  * @author williambl The type Old channels helper.
  */
-public class OldChannelsHelper {
+public final class OldChannelsHelper {
+
+    private OldChannelsHelper() { }
 
     /**
      * The constant channelLastMessageMap.
@@ -62,9 +64,9 @@ public class OldChannelsHelper {
     /**
      * Sets ready.
      *
-     * @param ready the ready
+     * @param pReady the ready
      */
-    public static void setReady(final boolean ready) {
-        OldChannelsHelper.ready = ready;
+    public static void setReady(final boolean pReady) {
+        OldChannelsHelper.ready = pReady;
     }
 }
